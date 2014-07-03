@@ -1,0 +1,22 @@
+{
+  "name": "wcwidth",
+  "version": "0.0.1",
+  "description": "Determine columns needed for a wide character",
+  "repo": "mattn/wcwidth.c",
+  "src": ["wcwidth.h", "wcwidth.c"],
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattn/wcwidth.c.git"
+  },
+  "keywords": [
+    "wcwidth", "i18n", "string"
+  ],
+  "author": "Yasuhiro Matsumoto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattn/wcwidth.c/issues"
+  }
+}
