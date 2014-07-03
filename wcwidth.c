@@ -239,12 +239,25 @@ utf_bytes2char(unsigned char* p) {
 }
 
 int
+utf_ptr2len(const char* str) {
+  int i, len;
+  if (*str == 0)
+    return 0;
+  len = utf8len_tab[(unsigned char) *str];
+  for (i = 1; i < len; ++i) {
+	if ((str[i] & 0xc0) != 0x80)
+	    return 1;
+  }
+  return len;
+}
+
+int
 string_width(const char* str) {
   const char* end = str + strlen(str);
   int width = 0;
   while(str < end) {
     width += wcwidth(utf_bytes2char((unsigned char*) str));
-    str += utf8len_tab[(unsigned char) *str];
+    str += utf_ptr2len(str);
   }
   return width;
 }
@@ -255,7 +268,7 @@ string_width_cjk(const char* str) {
   int width = 0;
   while(str < end) {
     width += wcwidth_cjk(utf_bytes2char((unsigned char*) str));
-    str += utf8len_tab[(unsigned char) *str];
+    str += utf_ptr2len(str);
   }
   return width;
 }
