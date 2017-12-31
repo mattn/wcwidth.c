@@ -245,8 +245,8 @@ utf_ptr2len(const char* str) {
     return 0;
   len = utf8len_tab[(unsigned char) *str];
   for (i = 1; i < len; ++i) {
-	if ((str[i] & 0xc0) != 0x80)
-	    return 1;
+    if ((str[i] & 0xc0) != 0x80)
+      return 1;
   }
   return len;
 }
