@@ -1,4 +1,5 @@
 #include "wcwidth.h"
+#include <string.h>
 
 struct interval
 {
@@ -253,7 +254,7 @@ utf_ptr2len(const char* str) {
 
 int
 string_width(const char* str) {
-  const char* end = str + strlen(str);
+  const char* end = str + strlen((char*)str);
   int width = 0;
   while(str < end) {
     width += wcwidth(utf_bytes2char((unsigned char*) str));
@@ -264,7 +265,7 @@ string_width(const char* str) {
 
 int
 string_width_cjk(const char* str) {
-  const char* end = str + strlen(str);
+  const char* end = str + strlen((char*)str);
   int width = 0;
   while(str < end) {
     width += wcwidth_cjk(utf_bytes2char((unsigned char*) str));
